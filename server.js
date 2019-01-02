@@ -17,7 +17,7 @@ var url = process.env.MONGOLAB_URI;
 
 // ADDED LATER
 
-var Chicken = require('./eggsquisite-mongo-app/models/chicken');
+var chicken = require('./eggsquisite-mongo-app/models/chicken');
 //const file_path = "./DB/users.json";
 
 // configure app to use bodyParser()
@@ -43,25 +43,15 @@ var router = express.Router();              // get an instance of the express Ro
 
 router.route('/chicken')
 
-    .get(function(req, res) {
-        // if (req.name)  {    
-        //     let user;  
-        //     let uniqueName = req.name;
-        //     jsonfile.readFile(file_path, function(err, content) {
-        //         for (var i = content.length - 1; i >= 0; i--) {
-        //           console.log("why reverse? ", i, " ", content[i].name, " ", name);
-        //             if (content[i].name === uniqueName) {
-        //                 console.log("found user" + content[i]);
-        //                 console.log(content[i]);
-        //                 user = content[i];
-        //                 userFound=true;
-        //             }
-        //         }
-        //         if (userFound) {res.send(user);} 
-        //         else {res.send(content);};
-            
-        //       });
-        // }
+    .get(function(req, res) { 
+        chicken.find(function (err, chicken) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(chicken);
+            }
+        })
+        
 
         res.json({ message: 'hooray! welcome to our api!' });   
     })
