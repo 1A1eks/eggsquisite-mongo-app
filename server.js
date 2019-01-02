@@ -1,5 +1,4 @@
 // long live https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
-
 // BASE SETUP
 // =============================================================================
 
@@ -10,14 +9,9 @@ var bodyParser = require('body-parser');
 
 var url = process.env.MONGOLAB_URI;
 
-//pw:d4b85e?
-
-
-  
-
 // ADDED LATER
 
-var chicken = require('./models/chicken');
+var Chicken = require('./models/chicken');
 //const file_path = "./DB/users.json";
 
 // configure app to use bodyParser()
@@ -32,7 +26,6 @@ mongoose.connect(url, {useNewUrlParser: true}, (err) => {
     console.log('connected to db')
 });
 
-
 var port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
@@ -44,24 +37,21 @@ var router = express.Router();              // get an instance of the express Ro
 router.route('/chicken')
 
     .get(function(req, res) { 
-        chicken.find(function (err, chicken) {
+        Chicken.find(function (err, chicken) {
             if (err) {
                 res.send(err);
             } else {
                 res.json(chicken);
             }
-        })
-        
+        })        
 
         res.json({ message: 'hooray! welcome to our api!' });   
     })
 
-
-
     // create a chicken (accessed at POST http://localhost:8080/api/chickens)
     .post(function(req, res) {
 
-        var chicken = new chicken();      // create a new instance of the chicken model
+        var Chicken = new chicken();      // create a new instance of the chicken model
         chicken.pun = req.body.pun;  // set the chickens name (comes from the request)
         chicken.category = req.body.category;
         console.log(chicken);
@@ -73,7 +63,6 @@ router.route('/chicken')
 
             res.json({ message: 'chicken created!' });
         });
-
     })
 
     .put(function(req, res) {
@@ -83,7 +72,6 @@ router.route('/chicken')
     .delete(function(req, res) {
         res.json({ message: 'hooray! welcome to our api!' });   
     });
-
 
 // more routes for our API will happen here
 
