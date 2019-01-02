@@ -72,7 +72,7 @@ router.route('/chicken')
         Chick.category = req.body.category;
 
         // save the chicken and check for errors
-        Chicken.save(function(err) {
+        Chick.save(function(err) {
             if (err)
                 res.send(err);
 
@@ -92,7 +92,7 @@ router.route('/chicken')
 
 router.route('/bear')
     .get(function(req, res) { 
-    Chicken.find(function (err, chick) {
+    chicken.find(function (err, chick) {
         if (err) {
             res.send(err);
         } else {
