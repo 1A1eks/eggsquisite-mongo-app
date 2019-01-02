@@ -13,11 +13,6 @@ var url = process.env.MONGOLAB_URI;
 //pw:d4b85e?
 
 
-let mongoose = require('mongoose');
-mongoose.connect(url, {useNewUrlParser: true}, (err) => {
-    if (err) throw err;
-    console.log('connected to db')
-});
   
 
 // ADDED LATER
@@ -31,6 +26,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;        // set our port
+
+
+let mongoose = require('mongoose');
+mongoose.connect(url, {useNewUrlParser: true}, (err) => {
+    if (err) throw err;
+    console.log('connected to db')
+});
+
 
 // ROUTES FOR OUR API
 // =============================================================================
