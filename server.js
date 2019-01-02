@@ -33,11 +33,20 @@ var port = process.env.PORT || 8080;        // set our port
 var router = express.Router();              // get an instance of the express Router
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+router.get('/', function(req, res) {
+    res.json({ message: 'hooray! welcome to our api!' });   
+});
+
+// more routes for our API will happen here
+
+// REGISTER OUR ROUTES -------------------------------
+// all of our routes will be prefixed with /api
+app.use('/api', router);
+
+// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 
 router.route('/chicken')
-
     .get(function(req, res) { 
-        console.log('test');
         Chicken.find(function (err, chicken) {
             if (err) {
                 res.send(err);
@@ -55,7 +64,6 @@ router.route('/chicken')
         var Chicken = new chicken();      // create a new instance of the chicken model
         Chicken.pun = req.body.pun;  // set the chickens name (comes from the request)
         Chicken.category = req.body.category;
-        console.log(chicken);
 
         // save the chicken and check for errors
         Chicken.save(function(err) {
