@@ -11,7 +11,7 @@ var url = process.env.MONGOLAB_URI;
 
 // ADDED LATER
 
-var Chicken = require('./models/chicken');
+var chicken = require('./models/chicken');
 //const file_path = "./DB/users.json";
 
 // configure app to use bodyParser()
@@ -53,11 +53,11 @@ router.get('/', function(req, res) {
 
 router.route('/chicken')
     .get(function(req, res) { 
-        Chicken.find(function (err, chicken) {
+        chicken.find(function (err, chick) {
             if (err) {
                 res.send(err);
             } else {
-                res.json(chicken);
+                res.json(chick);
             }
         })        
 
@@ -67,9 +67,9 @@ router.route('/chicken')
     // create a chicken (accessed at POST http://localhost:8080/api/chickens)
     .post(function(req, res) {
 
-        var Chicken = new chicken();      // create a new instance of the chicken model
-        Chicken.pun = req.body.pun;  // set the chickens name (comes from the request)
-        Chicken.category = req.body.category;
+        var Chick = new chicken();      // create a new instance of the chicken model
+        Chick.pun = req.body.pun;  // set the chickens name (comes from the request)
+        Chick.category = req.body.category;
 
         // save the chicken and check for errors
         Chicken.save(function(err) {
@@ -92,11 +92,11 @@ router.route('/chicken')
 
 router.route('/bear')
     .get(function(req, res) { 
-    Chicken.find(function (err, chicken) {
+    Chicken.find(function (err, chick) {
         if (err) {
             res.send(err);
         } else {
-            res.json(chicken);
+            res.json(chick);
         }
     })        
 
