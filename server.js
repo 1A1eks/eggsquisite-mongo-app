@@ -37,7 +37,7 @@ if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
 }
 app.get('*',(req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build'));
 });
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
