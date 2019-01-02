@@ -25,8 +25,6 @@ var chicken = require('./models/chicken');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;        // set our port
-
 
 let mongoose = require('mongoose');
 mongoose.connect(url, {useNewUrlParser: true}, (err) => {
@@ -34,6 +32,8 @@ mongoose.connect(url, {useNewUrlParser: true}, (err) => {
     console.log('connected to db')
 });
 
+
+var port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -62,7 +62,8 @@ router.route('/chicken')
     .post(function(req, res) {
 
         var chicken = new chicken();      // create a new instance of the chicken model
-        chicken.name = req.body.name;  // set the chickens name (comes from the request)
+        chicken.pun = req.body.pun;  // set the chickens name (comes from the request)
+        chicken.category = req.body.category;
 
         // save the chicken and check for errors
         chicken.save(function(err) {
