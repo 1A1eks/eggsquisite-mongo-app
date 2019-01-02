@@ -40,12 +40,18 @@ router.get('/', function(req, res) {
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', router);
+
+
+
+// all of our routes will be prefixed with /api   !important ffs, 
+// when you get the url, place /api behind, in front of the route
+
+
+
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 
-router.route('/chicken')
+router.route('/api/chicken')
     .get(function(req, res) { 
         Chicken.find(function (err, chicken) {
             if (err) {
@@ -86,7 +92,18 @@ router.route('/chicken')
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', router);
+app.use('/api/bear', router)
+    .get(function(req, res) { 
+    Chicken.find(function (err, chicken) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(chicken);
+        }
+    })        
+
+    res.json({ message: 'hooray! welcome to our api!' });   
+});
 
 // START THE SERVER
 // =============================================================================
