@@ -51,7 +51,7 @@ router.get('/', function(req, res) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 
-router.route('/api/chicken')
+router.route('/chicken')
     .get(function(req, res) { 
         Chicken.find(function (err, chicken) {
             if (err) {
@@ -90,7 +90,7 @@ router.route('/api/chicken')
 
 // more routes for our API will happen here
 
-router.route('/api/bear')
+router.route('/bear')
     .get(function(req, res) { 
     Chicken.find(function (err, chicken) {
         if (err) {
