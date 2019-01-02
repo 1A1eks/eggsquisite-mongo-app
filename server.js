@@ -90,7 +90,7 @@ router.route('/api/chicken')
 
 // more routes for our API will happen here
 
-router.route('/api/chicken')
+router.route('/api/bear')
     .get(function(req, res) { 
     Chicken.find(function (err, chicken) {
         if (err) {
