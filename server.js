@@ -37,6 +37,7 @@ var router = express.Router();              // get an instance of the express Ro
 router.route('/chicken')
 
     .get(function(req, res) { 
+        console.log('test');
         Chicken.find(function (err, chicken) {
             if (err) {
                 res.send(err);
@@ -52,12 +53,12 @@ router.route('/chicken')
     .post(function(req, res) {
 
         var Chicken = new chicken();      // create a new instance of the chicken model
-        chicken.pun = req.body.pun;  // set the chickens name (comes from the request)
-        chicken.category = req.body.category;
+        Chicken.pun = req.body.pun;  // set the chickens name (comes from the request)
+        Chicken.category = req.body.category;
         console.log(chicken);
 
         // save the chicken and check for errors
-        chicken.save(function(err) {
+        Chicken.save(function(err) {
             if (err)
                 res.send(err);
 
