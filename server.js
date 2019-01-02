@@ -17,7 +17,7 @@ var url = process.env.MONGOLAB_URI;
 
 // ADDED LATER
 
-var chicken = require('./eggsquisite-mongo-app/models/chicken');
+var chicken = require('./models/chicken');
 //const file_path = "./DB/users.json";
 
 // configure app to use bodyParser()
