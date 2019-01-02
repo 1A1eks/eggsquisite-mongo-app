@@ -90,9 +90,7 @@ router.route('/api/chicken')
 
 // more routes for our API will happen here
 
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api/bear', router)
+router.route('/api/chicken')
     .get(function(req, res) { 
     Chicken.find(function (err, chicken) {
         if (err) {
@@ -104,6 +102,11 @@ app.use('/api/bear', router)
 
     res.json({ message: 'hooray! welcome to our api!' });   
 });
+// REGISTER OUR ROUTES -------------------------------
+// all of our routes will be prefixed with /api
+
+
+app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
