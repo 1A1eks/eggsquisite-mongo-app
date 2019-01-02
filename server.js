@@ -64,6 +64,7 @@ router.route('/chicken')
         var chicken = new chicken();      // create a new instance of the chicken model
         chicken.pun = req.body.pun;  // set the chickens name (comes from the request)
         chicken.category = req.body.category;
+        console.log(chicken);
 
         // save the chicken and check for errors
         chicken.save(function(err) {
