@@ -11,7 +11,7 @@ var url = process.env.MONGOLAB_URI;
 
 // ADDED LATER
 
-var chicken = require('./models/chicken');
+var Chicken = require('./models/chicken');
 //const file_path = "./DB/users.json";
 
 // configure app to use bodyParser()
@@ -58,19 +58,19 @@ router.route('/chicken')
         if (cat != null) {
             console.log("test1");
             let cat = req.category;
-            chicken.find({ 'category': `${cat}` }, function (err, chicken) {
+            Chicken.find({ 'category': `${cat}` }, function (err, chicken) {
                 console.log("test2");
                 if (err) return handleError(err);
                 res.send(chicken);
             });              
         } else {
             console.log("test3");
-            chicken.find(function (err) {
+            Chicken.find(function (err) {
             if (err) {
                 console.log("test3.1");
                 res.send(err);
             } else {
-                console.log("test3.2");
+                console.log("test3.2 + chicken?", chicken);
                 res.json(chicken);
             }
          })  
@@ -82,7 +82,7 @@ router.route('/chicken')
     // create a chicken (accessed at POST http://localhost:8080/api/chickens)
     .post(function(req, res) {
 
-        var Chick = new chicken();      // create a new instance of the chicken model
+        var Chick = new Chicken();      // create a new instance of the chicken model
         Chick.pun = req.body.pun;  // set the chickens name (comes from the request)
         Chick.category = req.body.category;
 
@@ -107,7 +107,7 @@ router.route('/chicken')
 
 router.route('/bear')
     .get(function(req, res) { 
-    chicken.find(function (err, chick) {
+    Chicken.find(function (err, chick) {
         if (err) {
             res.send(err);
         } else {
