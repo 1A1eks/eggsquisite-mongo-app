@@ -97,7 +97,14 @@ router.route('/chicken')
     })
 
     .put(function(req, res) {
-        res.json({ message: 'hooray! welcome to our api!' });   
+        if (req.query.id && req.body.pun){
+            Chicken.findById( req.query.id , function (err, chicken) {
+                if (err) return handleError(err);
+                chicken.pun = req.body.pun;
+                chicken.category = req.body.category;
+                res.send("updated ", chicken);
+            }) 
+        } else {res.json("no id given to update...")}
     })
 
     .delete(function(req, res) {
