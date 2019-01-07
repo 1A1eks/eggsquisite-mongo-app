@@ -55,7 +55,7 @@ router.route('/chicken')
     .get(function(req, res) { 
 
         var cat = req.category;
-        if (cat != null) {
+        if (cat !== null) {
             console.log("test1");
             let cat = req.category;
             Chicken.find({ 'category': `${cat}` }, function (err, chicken) {
@@ -63,6 +63,12 @@ router.route('/chicken')
                 if (err) return handleError(err);
                 res.send(Chicken);
             });              
+        } else if (req.id){
+            Chicken.findOne({ id: req.id }, function (err, chicken) {
+                console.log("test2.5");
+                if (err) return handleError(err);
+                res.send(Chicken);
+            }); 
         } else {
             console.log("test3");
             Chicken.find(function(err, chicken) {
