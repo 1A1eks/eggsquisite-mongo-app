@@ -57,32 +57,27 @@ router.route('/chicken')
         var cat = req.query.category;
         console.log(cat, " fockin ,", req.query.id);
         if (cat != undefined) {
-            console.log("test1");
             Chicken.find({ 'category': `${cat}` }, function (err, chicken) {
-                console.log("test2");
+                console.log("test1");
                 if (err) return handleError(err);
                 res.send(chicken);
             });              
         } else if (req.query.id){
-            Chicken.findOne({ id: req.query.id }, function (err, chicken) {
-                console.log("test2.5");
+            Chicken.findById( req.query.id , function (err, chicken) {
+                console.log("test2");
                 if (err) return handleError(err);
                 res.send(chicken);
             }); 
         } else {
-            console.log("test3");
             Chicken.find(function(err, chicken) {
             if (err) {
-                console.log("test3.1");
                 res.send(err);
             } else {
-                console.log("test3.2 + chicken?");
+                console.log("test3");
                 res.json(chicken);
             }
          })  
-        }
-        console.log("test4");
-        //res.json({ message: 'hooray! welcome to our api!' });   
+        } 
     })
 
     // create a chicken (accessed at POST http://localhost:8080/api/chickens)
