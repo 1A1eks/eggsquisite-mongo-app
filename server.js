@@ -61,13 +61,13 @@ router.route('/chicken')
             Chicken.find({ 'category': `${cat}` }, function (err, chicken) {
                 console.log("test2");
                 if (err) return handleError(err);
-                res.send(Chicken);
+                res.send(chicken);
             });              
         } else if (req.query.id){
             Chicken.findOne({ id: req.query.id }, function (err, chicken) {
                 console.log("test2.5");
                 if (err) return handleError(err);
-                res.send(Chicken);
+                res.send(chicken);
             }); 
         } else {
             console.log("test3");
