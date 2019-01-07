@@ -54,7 +54,7 @@ router.get('/', function(req, res) {
 router.route('/chicken')
     .get(function(req, res) { 
 
-        if (req.category) {
+        if (req.category !== undefined) {
             console.log("test1");
             let cat = req.category;
             chicken.find({ 'category': `${cat}` }, function (err, chicken) {
@@ -66,8 +66,10 @@ router.route('/chicken')
             console.log("test3");
             chicken.find(function (err) {
             if (err) {
+                console.log("test3.1");
                 res.send(err);
             } else {
+                console.log("test3.2");
                 res.json(chicken);
             }
          })  
