@@ -54,18 +54,17 @@ router.get('/', function(req, res) {
 router.route('/chicken')
     .get(function(req, res) { 
 
-        var cat = req.category;
-        console.log(cat, " fockin ,", req.id);
+        var cat = req.query.category;
+        console.log(cat, " fockin ,", req.query.id);
         if (cat != undefined) {
             console.log("test1");
-            let cat = req.category;
             Chicken.find({ 'category': `${cat}` }, function (err, chicken) {
                 console.log("test2");
                 if (err) return handleError(err);
                 res.send(Chicken);
             });              
-        } else if (req.id){
-            Chicken.findOne({ id: req.id }, function (err, chicken) {
+        } else if (req.query.id){
+            Chicken.findOne({ id: req.query.id }, function (err, chicken) {
                 console.log("test2.5");
                 if (err) return handleError(err);
                 res.send(Chicken);
