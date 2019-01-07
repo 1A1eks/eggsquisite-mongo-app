@@ -55,7 +55,7 @@ router.route('/chicken')
     .get(function(req, res) { 
 
         var cat = req.category;
-        if (cat != "") {
+        if (cat != undefined) {
             console.log("test1");
             let cat = req.category;
             Chicken.find({ 'category': `${cat}` }, function (err, chicken) {
