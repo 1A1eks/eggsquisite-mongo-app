@@ -55,14 +55,15 @@ router.route('/chicken')
     .get(function(req, res) { 
 
         if (req.category) {
+            console.log("test1");
             let cat = req.category;
             chicken.find({ 'category': `${cat}` }, function (err, chicken) {
+                console.log("test2");
                 if (err) return handleError(err);
-                // Prints "Space Ghost is a talk show host".
                 res.send(chicken);
-            });
-              
+            });              
         } else {
+            console.log("test3");
             chicken.find(function (err) {
             if (err) {
                 res.send(err);
@@ -71,10 +72,7 @@ router.route('/chicken')
             }
          })  
         }
-              
-        
-
-
+        console.log("test4");
         res.json({ message: 'hooray! welcome to our api!' });   
     })
 
