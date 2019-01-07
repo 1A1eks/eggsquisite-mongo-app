@@ -8,4 +8,4 @@ var chickenSchema = new sschema({
     category: String
 })
 
-module.exports = mongoose.model('Chicken', chickenSchema);
+module.exports = mongoose.model('chicken', chickenSchema);
