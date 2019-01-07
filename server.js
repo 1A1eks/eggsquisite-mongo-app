@@ -54,7 +54,8 @@ router.get('/', function(req, res) {
 router.route('/chicken')
     .get(function(req, res) { 
 
-        if (req.category !== undefined) {
+        var cat = req.category;
+        if (cat != null) {
             console.log("test1");
             let cat = req.category;
             chicken.find({ 'category': `${cat}` }, function (err, chicken) {
@@ -75,7 +76,7 @@ router.route('/chicken')
          })  
         }
         console.log("test4");
-        res.json({ message: 'hooray! welcome to our api!' });   
+        //res.json({ message: 'hooray! welcome to our api!' });   
     })
 
     // create a chicken (accessed at POST http://localhost:8080/api/chickens)
