@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 let mongoose = require('mongoose');
 mongoose.connect(url, {useNewUrlParser: true}, (err) => {
     if (err) throw err;
-    console.log('connected to db')
+    console.log('connected to db');
 });
 
 var port = process.env.PORT || 8080;        // set our port
@@ -53,13 +53,27 @@ router.get('/', function(req, res) {
 
 router.route('/chicken')
     .get(function(req, res) { 
-        chicken.find(function (err, chick) {
+
+        if (req.category) {
+            let cat = req.category;
+            chicken.find({ 'category': `${cat}` }, function (err, chicken) {
+                if (err) return handleError(err);
+                // Prints "Space Ghost is a talk show host".
+                res.send(chicken);
+            });
+              
+        } else {
+            chicken.find(function (err) {
             if (err) {
                 res.send(err);
             } else {
-                res.json(chick);
+                res.json(chicken);
             }
-        })        
+         })  
+        }
+              
+        
+
 
         res.json({ message: 'hooray! welcome to our api!' });   
     })
