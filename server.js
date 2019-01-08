@@ -112,7 +112,7 @@ router.route('/chicken')
             // remove method here
             Chicken.findByIdAndDelete( req.query.id , function (err, chicken) {
                 if (err) return handleError(err);
-                res.send("deleted ", chicken);
+                res.send("deleted ");
             }) 
         } else {res.json("no correct id given to delete...")}  
     });
