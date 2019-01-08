@@ -108,7 +108,13 @@ router.route('/chicken')
     })
 
     .delete(function(req, res) {
-        res.json({ message: 'hooray! welcome to our api!' });   
+        if (req.query.id){
+            // remove method here
+            Chicken.findByIdAndDelete( req.query.id , function (err, chicken) {
+                if (err) return handleError(err);
+                res.send("deleted ", chicken);
+            }) 
+        } else {res.json("no correct id given to delete...")}  
     });
 
 // more routes for our API will happen here
